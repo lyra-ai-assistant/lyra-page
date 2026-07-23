@@ -1,9 +1,5 @@
 # Lyra web page
 
-Lyra's web page, built with [Astro](https://astro.build).
-
-## Content
-
 The site explains what Lyra is (an open source, fully offline AI assistant
 for GNU/Linux) and links out to the three repos that make it up:
 
@@ -48,3 +44,5 @@ it:
 `astro.config.mjs` sets `base: '/page'`, which is correct for this repo's
 default GitHub Pages URL (`https://lyra-ai-assistant.github.io/page/`). If
 you point a custom domain at it instead, remove that line.
+
+Lyra's web page, built with [Astro](https://astro.build).
