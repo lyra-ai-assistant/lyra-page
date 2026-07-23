@@ -1,4 +1,4 @@
-# page
+# Lyra web page
 
 Lyra's web page, built with [Astro](https://astro.build).
 
