@@ -6,5 +6,5 @@ import { defineConfig } from 'astro/config';
 // `lyra-ai-assistant.github.io`, remove the `base` line.
 export default defineConfig({
   site: 'https://lyra-ai-assistant.github.io',
-  base: '/page',
+  base: '/lyra-page',
 });
