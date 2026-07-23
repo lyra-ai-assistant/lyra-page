@@ -1,0 +1,594 @@
+---
+import '../styles/global.css';
+import ComponentCard from '../components/ComponentCard.astro';
+
+const org = 'https://github.com/lyra-ai-assistant';
+const base = import.meta.env.BASE_URL;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Lyra is an open source AI assistant for GNU/Linux that runs fully offline on your own machine. No telemetry, no cloud dependency."
+    />
+    <title>Lyra — Your Cosmic Companion</title>
+    <link rel="icon" href={`/public/favicon.svg`} type="image/svg+xml" />
+  </head>
+  <body>
+    <header class="nav">
+      <div class="wrap nav-row">
+        <div class="brand">
+          <img class="brand-avatar" src={`/public/images/lyra-portrait.png`} alt="Lyra portrait" aria-hidden="true" />
+          <span class="wordmark">Lyra</span>
+        </div>
+        <a class="nav-link" href={org} target="_blank" rel="noopener noreferrer">
+          GitHub ↗
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero">
+        <div class="wrap hero-row">
+          <div class="hero-copy">
+            <p class="eyebrow">Open source · GNU/Linux · Fully offline</p>
+            <h1 class="hero-title">Your cosmic<br />companion.</h1>
+            <p class="lede">
+              Lyra is a local AI assistant that lives on your machine, not in someone
+              else's cloud. It runs a lightweight language model entirely offline,
+              learns your distro and package manager, and answers with the exact
+              command your system needs — not a generic one.
+            </p>
+            <ul class="gem-list">
+              <li>Runs fully offline — your data stays yours</li>
+              <li>4 GB RAM. Full AI. No compromises</li>
+              <li>Free, open source, and yours to keep</li>
+            </ul>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="#install">Install Lyra</a>
+              <a class="btn btn-ghost" href={org} target="_blank" rel="noopener noreferrer">
+                View the code
+              </a>
+            </div>
+          </div>
+          <div class="hero-art">
+            <img class="moon-decor" src={`/public/images/moon.png`} alt="" aria-hidden="true" />
+            <img class="hero-character" src={`/public/images/lyra-fullbody.png`} alt="Lyra, the project's astronaut mascot, floating" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Components -->
+      <section class="section" id="components">
+        <div class="wrap">
+          <p class="eyebrow">Under the hood</p>
+          <h2 class="section-title">Three parts, one assistant.</h2>
+          <p class="section-lede">
+            Lyra is built as a small constellation of its own: a backend that
+            thinks, a client that you talk to, and packaging that gets it onto
+            your system in the first place.
+          </p>
+
+          <div class="card-grid">
+            <ComponentCard
+              role="The brain"
+              name="lyra-server"
+              repo="lyra-server"
+              description="Backend daemon for Lyra. Exposes a Unix socket for the CLI and desktop UI, plus an HTTP API with streaming for external integrations."
+              facts={[
+                'Runs a local Qwen2.5-1.5B model via llama-cpp-python',
+                'Remembers past conversations with a semantic memory store',
+                'Resolves packages across pacman, apt, PyPI, npm, crates.io',
+              ]}
+              stack="Python 3.13 · FastAPI · llama-cpp-python · SQLite · ChromaDB"
+            />
+            <ComponentCard
+              role="The face"
+              name="lyra-ui"
+              repo="lyra-ui"
+              description="The Electron desktop client. Talks to lyra-server over a Unix socket, renders responses as markdown, and keeps an eye on your system."
+              facts={[
+                'Renders responses as markdown with syntax highlighting',
+                'Shows live RAM, CPU, and disk usage',
+                'Starts lyra-server automatically if it isn\u2019t already running',
+              ]}
+              stack="Electron · Node.js 20 · pnpm · markdown-it · Chart.js"
+            />
+            <ComponentCard
+              role="The delivery"
+              name="lyra-packaging"
+              repo="lyra-packaging"
+              description="The packaging and release pipeline that turns lyra-server and lyra-ui into installable packages for your distribution."
+              facts={[
+                'Builds .pkg.tar.zst archives for Arch Linux',
+                'Builds .deb archives for Debian and Ubuntu',
+                'Handles CI/CD and release announcements',
+              ]}
+              stack="Shell · Python · GitHub Actions"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Requirements -->
+      <section class="section">
+        <div class="wrap two-col">
+          <div>
+            <p class="eyebrow">Where it runs</p>
+            <h2 class="section-title">Supported distributions</h2>
+            <div class="os-badges" aria-hidden="true">
+              <span class="os-badge os-badge--ubuntu">
+                <svg viewBox="0 0 24 24" width="16" height="16"><circle cx="12" cy="12" r="10" fill="currentColor" /></svg>
+                Ubuntu &amp; Debian
+              </span>
+              <span class="os-badge os-badge--arch">
+                <svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 2 L21 21 L12 17 L3 21 Z" fill="currentColor" /></svg>
+                Arch Linux
+              </span>
+            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Distribution</th>
+                  <th>Package manager</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Arch Linux and derivatives</td>
+                  <td><code>pacman</code></td>
+                  <td><span class="status">Supported</span></td>
+                </tr>
+                <tr>
+                  <td>Debian, Ubuntu and derivatives</td>
+                  <td><code>apt</code></td>
+                  <td><span class="status">Supported</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <p class="eyebrow">What it needs</p>
+            <h2 class="section-title">System requirements</h2>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Minimum</th>
+                  <th>Recommended</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>RAM</td>
+                  <td>4 GB</td>
+                  <td>8 GB</td>
+                </tr>
+                <tr>
+                  <td>Disk</td>
+                  <td>3 GB free</td>
+                  <td>5 GB free</td>
+                </tr>
+                <tr>
+                  <td>CPU</td>
+                  <td>x86_64, 2 cores</td>
+                  <td>x86_64, 4 cores</td>
+                </tr>
+                <tr>
+                  <td>GPU</td>
+                  <td>Not required (But supported)</td>
+                  <td>NVIDIA, AMD, or Intel Arc</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="fine-print">Estimates based on Lyra's bundled components; not yet formally benchmarked.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Install -->
+      <section class="section" id="install">
+        <div class="wrap">
+          <p class="eyebrow">Get started</p>
+          <h2 class="section-title">Install Lyra</h2>
+
+          <div class="install-grid">
+            <div class="terminal">
+              <p class="terminal-label">Arch Linux</p>
+              <pre><code>sudo pacman -U lyra-1.1.0-1-x86_64.pkg.tar.zst</code></pre>
+            </div>
+            <div class="terminal">
+              <p class="terminal-label">Debian / Ubuntu</p>
+              <pre><code>sudo apt install ./lyra_1.1.0-1_amd64.deb</code></pre>
+            </div>
+          </div>
+
+          <p class="step-text">Then, download the model once — this needs an internet connection the first time only:</p>
+          <div class="terminal">
+            <pre><code>lyra-install-backend</code></pre>
+          </div>
+
+          <p class="step-text">Start it up:</p>
+          <div class="terminal">
+            <pre><code>lyra serve --daemon
+lyra-ui</code></pre>
+          </div>
+
+          <p class="step-text">Or skip the desktop client and talk to it from the terminal:</p>
+          <div class="terminal">
+            <pre><code>lyra -q "how do I install neovim"</code></pre>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap footer-row">
+        <p>lyra-server is AGPL-3.0 · lyra-ui is AGPL-3.0 · lyra-packaging is MIT</p>
+        <a href={org} target="_blank" rel="noopener noreferrer">github.com/lyra-ai-assistant ↗</a>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .nav {
+    padding-block: 1.5rem;
+  }
+
+  .nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .brand-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top center;
+    background: var(--maroon);
+  }
+
+  .wordmark {
+    font-family: var(--font-script);
+    font-size: 1.7rem;
+    line-height: 1;
+    color: var(--text);
+    text-shadow: 2px 2px 0 var(--maroon-mid), 3px 3px 0 var(--maroon);
+  }
+
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    text-decoration: none;
+    color: var(--text-muted);
+    transition: color 0.15s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--accent);
+  }
+
+  .hero {
+    position: relative;
+    padding-block: 3rem 5rem;
+    overflow: hidden;
+  }
+
+  .rocket-decor {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    width: 90px;
+    transform: rotate(0deg);
+    opacity: 0.9;
+    pointer-events: none;
+  }
+
+  .hero-row {
+    display: flex;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 3rem;
+    justify-content: space-between;
+  }
+
+  .hero-title {
+    font-family: var(--font-script);
+    font-weight: 400;
+    font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+    line-height: 1.15;
+    margin-block: 0.6rem 1.3rem;
+    color: var(--text);
+    text-shadow: 3px 3px 0 var(--maroon-mid), 5px 5px 0 var(--maroon);
+  }
+
+  .lede {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    max-width: 46ch;
+  }
+
+  .gem-list {
+    list-style: none;
+    margin: 1.6rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    max-width: 46ch;
+  }
+
+  .gem-list li {
+    position: relative;
+    padding-left: 1.6rem;
+    font-size: 0.98rem;
+  }
+
+  .gem-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.15em;
+    width: 0.85em;
+    height: 0.85em;
+    background: linear-gradient(135deg, var(--text) 0%, var(--accent) 60%, var(--maroon-mid) 100%);
+    transform: rotate(45deg);
+    border-radius: 2px;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 0.9rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    text-decoration: none;
+    padding: 0.75rem 1.3rem;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--text);
+  }
+
+  .btn-primary:hover {
+    background: #dd7a6b;
+  }
+
+  .btn-ghost {
+    border-color: var(--line);
+    color: var(--text);
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .hero-art {
+    position: relative;
+    justify-self: center;
+    width: min(360px, 100%);
+  }
+
+  .moon-decor {
+    position: absolute;
+    top: -6%;
+    right: 4%;
+    width: 42%;
+    opacity: 0.9;
+  }
+
+  .hero-character {
+    position: relative;
+    width: 100%;
+    filter: drop-shadow(0 20px 30px rgba(10, 8, 20, 0.45));
+  }
+
+  .section {
+    padding-block: 3.5rem;
+    border-top: 1px solid var(--line-soft);
+  }
+
+  .section-title {
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+    margin-block: 0.6rem 1rem;
+  }
+
+  .section-lede {
+    color: var(--text-muted);
+    max-width: 62ch;
+    margin-bottom: 2.5rem;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .os-badges {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 0.9rem;
+    flex-wrap: wrap;
+  }
+
+  .os-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 0.4rem 0.7rem;
+    border-radius: 999px;
+    background: var(--bg-panel-raised);
+    border: 1px solid var(--line);
+    color: var(--text-muted);
+  }
+
+  .os-badge--ubuntu {
+    color: #e0774a;
+  }
+
+  .os-badge--arch {
+    color: #7fb5e0;
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.2rem;
+    font-size: 0.92rem;
+  }
+
+  .table th {
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 400;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .table td {
+    padding-block: 0.7rem;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .table code {
+    font-size: 0.85rem;
+    color: var(--accent-2);
+  }
+
+  .status {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+  }
+
+  .fine-print {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    margin-top: 1rem;
+  }
+
+  .install-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .terminal {
+    background: var(--bg-panel-raised);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .terminal-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+  }
+
+  .terminal pre {
+    margin: 0;
+    overflow-x: auto;
+  }
+
+  .terminal code {
+    font-size: 0.88rem;
+    color: var(--text);
+  }
+
+  .step-text {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .footer {
+    border-top: 1px solid var(--line-soft);
+    padding-block: 2rem;
+    margin-top: 2rem;
+  }
+
+  .footer-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+
+  .footer-row a {
+    text-decoration: none;
+    color: var(--text-muted);
+    transition: color 0.15s ease;
+  }
+
+  .footer-row a:hover {
+    color: var(--accent);
+  }
+
+  @media (max-width: 860px) {
+    .hero-row {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-art {
+      order: -1;
+      width: min(280px, 100%);
+    }
+
+    .rocket-decor {
+      display: none;
+    }
+
+    .card-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .two-col,
+    .install-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

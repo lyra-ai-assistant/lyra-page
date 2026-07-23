@@ -1,0 +1,105 @@
+---
+interface Props {
+  role: string;
+  name: string;
+  repo: string;
+  description: string;
+  facts: string[];
+  stack: string;
+}
+
+const { role, name, repo, description, facts, stack } = Astro.props;
+---
+
+<article class="card">
+  <p class="role">{role}</p>
+  <h3>
+    <a href={`https://github.com/lyra-ai-assistant/${repo}`} target="_blank" rel="noopener noreferrer">
+      {name}
+    </a>
+  </h3>
+  <p class="description">{description}</p>
+  <ul class="facts">
+    {facts.map((fact) => <li>{fact}</li>)}
+  </ul>
+  <p class="stack"><span class="stack-label">Stack</span> {stack}</p>
+</article>
+
+<style>
+  .card {
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    height: 100%;
+  }
+
+  .role {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+    margin: 0;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+  }
+
+  h3 a {
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+
+  h3 a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .description {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  .facts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-size: 0.88rem;
+  }
+
+  .facts li {
+    padding-left: 1rem;
+    position: relative;
+    color: var(--text);
+  }
+
+  .facts li::before {
+    content: '\2013';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  .stack {
+    margin-top: auto;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--line-soft);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+
+  .stack-label {
+    color: var(--accent);
+    margin-right: 0.4em;
+  }
+</style>

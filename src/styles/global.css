@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* Color -- sampled straight from the Lyra brand poster */
+  --bg: #2a2839; /* deep cosmic plum */
+  --bg-panel: #322f45;
+  --bg-panel-raised: #3a3750;
+  --line: #47435f;
+  --line-soft: #3a3750;
+  --text: #f6f3e4; /* warm cream */
+  --text-muted: #b3aec4;
+  --accent: #d26858; /* terracotta/coral, from the suit trim + rocket fins */
+  --accent-soft: rgba(210, 104, 88, 0.16);
+  --accent-2: #d26858;
+  --maroon: #411c1f; /* deep hexagon-badge maroon, for shadows/depth */
+  --maroon-mid: #7a3131;
+
+  /* Type */
+  --font-script: 'Pacifico', cursive; /* the logo/wordmark script */
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  background-image:
+    radial-gradient(1px 1px at 12% 22%, rgba(246, 243, 228, 0.5), transparent),
+    radial-gradient(1px 1px at 78% 12%, rgba(246, 243, 228, 0.35), transparent),
+    radial-gradient(1.5px 1.5px at 92% 48%, rgba(246, 243, 228, 0.4), transparent),
+    radial-gradient(1px 1px at 35% 68%, rgba(246, 243, 228, 0.3), transparent),
+    radial-gradient(1px 1px at 60% 85%, rgba(246, 243, 228, 0.35), transparent),
+    radial-gradient(1.5px 1.5px at 8% 90%, rgba(246, 243, 228, 0.3), transparent);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.1;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+code,
+pre {
+  font-family: var(--font-mono);
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.wrap {
+  width: min(1100px, 100% - 3rem);
+  margin-inline: auto;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
