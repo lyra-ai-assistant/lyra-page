@@ -65,7 +65,7 @@ A few rules this follows, so future changes stay easy:
 
 ## Development
 
-Requires Node.js 20+ and pnpm (via `corepack enable`, or installed globally).
+Requires Node.js 22.13+ and pnpm (via `corepack enable`, or installed globally).
 
 ```
 pnpm install
