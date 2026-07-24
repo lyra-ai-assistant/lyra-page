@@ -1,0 +1,41 @@
+---
+interface Props {
+  items: string[];
+}
+
+const { items } = Astro.props;
+---
+
+<ul class="gem-list">
+  {items.map((item) => <li>{item}</li>)}
+</ul>
+
+<style>
+  .gem-list {
+    list-style: none;
+    margin: 1.6rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    max-width: 46ch;
+  }
+
+  .gem-list li {
+    position: relative;
+    padding-left: 1.6rem;
+    font-size: 0.98rem;
+  }
+
+  .gem-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.15em;
+    width: 0.85em;
+    height: 0.85em;
+    background: linear-gradient(135deg, var(--text) 0%, var(--accent) 60%, var(--maroon-mid) 100%);
+    transform: rotate(45deg);
+    border-radius: 2px;
+  }
+</style>

@@ -1,0 +1,31 @@
+---
+import Eyebrow from '../ui/Eyebrow.astro';
+import RepoCard from './RepoCard.astro';
+import { componentsOverview, repoComponents } from '../../data/components';
+---
+
+<section class="section" id="components">
+  <div class="wrap">
+    <Eyebrow text={componentsOverview.eyebrow} />
+    <h2 class="section-title">{componentsOverview.title}</h2>
+    <p class="section-lede">{componentsOverview.lede}</p>
+
+    <div class="card-grid">
+      {repoComponents.map((component) => <RepoCard component={component} />)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 860px) {
+    .card-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,52 @@
+---
+import { images } from '../../data/assets';
+import { withBase } from '../../utils/paths';
+---
+
+<div class="hero-art">
+  <img class="rocket-decor" src={withBase(images.rocket)} alt="" aria-hidden="true" />
+  <img class="moon-decor" src={withBase(images.moon)} alt="" aria-hidden="true" />
+  <img
+    class="hero-character"
+    src={withBase(images.fullbody)}
+    alt="Lyra, the project's astronaut mascot, floating"
+  />
+</div>
+
+<style>
+  .hero-art {
+    position: relative;
+    justify-self: center;
+    width: min(360px, 100%);
+  }
+
+  .rocket-decor {
+    position: absolute;
+    top: -2.5rem;
+    left: -3rem;
+    width: 90px;
+    transform: rotate(-8deg);
+    opacity: 0.9;
+    pointer-events: none;
+  }
+
+  .moon-decor {
+    position: absolute;
+    top: -6%;
+    right: 4%;
+    width: 42%;
+    opacity: 0.9;
+  }
+
+  .hero-character {
+    position: relative;
+    width: 100%;
+    filter: drop-shadow(0 20px 30px rgba(10, 8, 20, 0.45));
+  }
+
+  @media (max-width: 860px) {
+    .rocket-decor {
+      display: none;
+    }
+  }
+</style>

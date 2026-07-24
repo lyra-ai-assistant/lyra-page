@@ -1,0 +1,42 @@
+---
+interface Props {
+  code: string;
+  label?: string;
+}
+
+const { code, label } = Astro.props;
+---
+
+<div class="terminal">
+  {label && <p class="terminal-label">{label}</p>}
+  <pre><code>{code}</code></pre>
+</div>
+
+<style>
+  .terminal {
+    background: var(--bg-panel-raised);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 1rem 1.2rem;
+  }
+
+  .terminal-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0 0 0.6rem;
+  }
+
+  .terminal pre {
+    margin: 0;
+    overflow-x: auto;
+  }
+
+  .terminal code {
+    font-size: 0.88rem;
+    color: var(--text);
+    white-space: pre;
+  }
+</style>

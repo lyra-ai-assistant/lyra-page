@@ -1,20 +1,19 @@
 ---
+import type { RepoComponent } from '../../data/components';
+import { site } from '../../data/site';
+
 interface Props {
-  role: string;
-  name: string;
-  repo: string;
-  description: string;
-  facts: string[];
-  stack: string;
+  component: RepoComponent;
 }
 
-const { role, name, repo, description, facts, stack } = Astro.props;
+const { component } = Astro.props;
+const { role, name, repo, description, facts, stack } = component;
 ---
 
 <article class="card">
   <p class="role">{role}</p>
   <h3>
-    <a href={`https://github.com/lyra-ai-assistant/${repo}`} target="_blank" rel="noopener noreferrer">
+    <a href={`${site.githubOrg}/${repo}`} target="_blank" rel="noopener noreferrer">
       {name}
     </a>
   </h3>
@@ -53,7 +52,9 @@ const { role, name, repo, description, facts, stack } = Astro.props;
   h3 a {
     text-decoration: none;
     border-bottom: 1px solid transparent;
-    transition: border-color 0.15s ease, color 0.15s ease;
+    transition:
+      border-color 0.15s ease,
+      color 0.15s ease;
   }
 
   h3 a:hover {

@@ -1,0 +1,54 @@
+---
+import Eyebrow from '../ui/Eyebrow.astro';
+import Table from '../ui/Table.astro';
+import OsBadge from '../ui/OsBadge.astro';
+import { distrosSection, osBadges, distrosTable } from '../../data/distros';
+import { requirementsSection, requirementsTable } from '../../data/requirements';
+---
+
+<section class="section">
+  <div class="wrap two-col">
+    <div>
+      <Eyebrow text={distrosSection.eyebrow} />
+      <h2 class="section-title">{distrosSection.title}</h2>
+      <div class="os-badges" aria-hidden="true">
+        {osBadges.map((badge) => <OsBadge label={badge.label} variant={badge.variant} />)}
+      </div>
+      <Table data={distrosTable} />
+    </div>
+
+    <div>
+      <Eyebrow text={requirementsSection.eyebrow} />
+      <h2 class="section-title">{requirementsSection.title}</h2>
+      <Table data={requirementsTable} />
+      <p class="fine-print">{requirementsSection.finePrint}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .os-badges {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 0.9rem;
+    flex-wrap: wrap;
+  }
+
+  .fine-print {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 860px) {
+    .two-col {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

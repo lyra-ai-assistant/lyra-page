@@ -1,0 +1,78 @@
+---
+import Eyebrow from '../ui/Eyebrow.astro';
+import GemList from '../ui/GemList.astro';
+import Button from '../ui/Button.astro';
+import HeroArt from './HeroArt.astro';
+import { hero, site } from '../../data/site';
+
+const titleLines = hero.title.split('\n');
+---
+
+<section class="hero">
+  <div class="wrap hero-row">
+    <div class="hero-copy">
+      <Eyebrow text={hero.eyebrow} />
+      <h1 class="hero-title">
+        {titleLines.map((line, i) => (
+          <>
+            {i > 0 && <br />}
+            {line}
+          </>
+        ))}
+      </h1>
+      <p class="lede">{hero.lede}</p>
+      <GemList items={hero.facts} />
+      <div class="cta-row">
+        <Button href="#install">Install Lyra</Button>
+        <Button href={site.githubOrg} variant="ghost" external>View the code</Button>
+      </div>
+    </div>
+    <HeroArt />
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    padding-block: 3rem 5rem;
+    overflow: hidden;
+  }
+
+  .hero-row {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .hero-title {
+    font-family: var(--font-script);
+    font-weight: 400;
+    font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+    line-height: 1.15;
+    margin-block: 0.6rem 1.3rem;
+    color: var(--text);
+    text-shadow:
+      3px 3px 0 var(--maroon-mid),
+      5px 5px 0 var(--maroon);
+  }
+
+  .lede {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    max-width: 46ch;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 0.9rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 860px) {
+    .hero-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,40 @@
+---
+import { site } from '../../data/site';
+---
+
+<footer class="footer">
+  <div class="wrap footer-row">
+    <p>{site.license}</p>
+    <a href={site.githubOrg} target="_blank" rel="noopener noreferrer">
+      {site.githubOrg.replace('https://', '')} ↗
+    </a>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--line-soft);
+    padding-block: 2rem;
+    margin-top: 2rem;
+  }
+
+  .footer-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+
+  .footer-row a {
+    text-decoration: none;
+    color: var(--text-muted);
+    transition: color 0.15s ease;
+  }
+
+  .footer-row a:hover {
+    color: var(--accent);
+  }
+</style>

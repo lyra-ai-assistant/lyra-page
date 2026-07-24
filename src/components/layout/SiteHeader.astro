@@ -1,0 +1,64 @@
+---
+import { site } from '../../data/site';
+import { images } from '../../data/assets';
+import { withBase } from '../../utils/paths';
+---
+
+<header class="nav">
+  <div class="wrap nav-row">
+    <div class="brand">
+      <img class="brand-avatar" src={withBase(images.portrait)} alt="" aria-hidden="true" />
+      <span class="wordmark">{site.name}</span>
+    </div>
+    <a class="nav-link" href={site.githubOrg} target="_blank" rel="noopener noreferrer"> GitHub ↗ </a>
+  </div>
+</header>
+
+<style>
+  .nav {
+    padding-block: 1.5rem;
+  }
+
+  .nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .brand-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top center;
+    background: var(--maroon);
+  }
+
+  .wordmark {
+    font-family: var(--font-script);
+    font-size: 1.7rem;
+    line-height: 1;
+    color: var(--text);
+    text-shadow:
+      2px 2px 0 var(--maroon-mid),
+      3px 3px 0 var(--maroon);
+  }
+
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    text-decoration: none;
+    color: var(--text-muted);
+    transition: color 0.15s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--accent);
+  }
+</style>

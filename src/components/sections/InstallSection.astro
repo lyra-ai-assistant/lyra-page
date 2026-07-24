@@ -1,0 +1,52 @@
+---
+import Eyebrow from '../ui/Eyebrow.astro';
+import CodeBlock from '../ui/CodeBlock.astro';
+import { installSection, installCommands, setupSteps } from '../../data/install';
+---
+
+<section class="section" id="install">
+  <div class="wrap">
+    <Eyebrow text={installSection.eyebrow} />
+    <h2 class="section-title">{installSection.title}</h2>
+
+    <div class="install-grid">
+      {installCommands.map((item) => <CodeBlock label={item.label} code={item.code} />)}
+    </div>
+
+    {
+      setupSteps.map((step) => (
+        <>
+          <p class="step-text">{step.text}</p>
+          <div class="step-block">
+            <CodeBlock code={step.code} />
+          </div>
+        </>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .install-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .step-text {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .step-block {
+    margin-bottom: 1.2rem;
+  }
+
+  @media (max-width: 860px) {
+    .install-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

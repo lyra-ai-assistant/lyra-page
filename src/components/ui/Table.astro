@@ -1,0 +1,79 @@
+---
+import type { TableData } from '../../data/table';
+
+interface Props {
+  data: TableData;
+}
+
+const { data } = Astro.props;
+---
+
+<table class="table">
+  <thead>
+    <tr>
+      {data.headers.map((header) => <th>{header}</th>)}
+    </tr>
+  </thead>
+  <tbody>
+    {
+      data.rows.map((row) => (
+        <tr>
+          {row.map((cell) => {
+            if (cell.variant === 'mono') {
+              return (
+                <td>
+                  <code>{cell.text}</code>
+                </td>
+              );
+            }
+            if (cell.variant === 'status') {
+              return (
+                <td>
+                  <span class="status">{cell.text}</span>
+                </td>
+              );
+            }
+            return <td>{cell.text}</td>;
+          })}
+        </tr>
+      ))
+    }
+  </tbody>
+</table>
+
+<style>
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.2rem;
+    font-size: 0.92rem;
+  }
+
+  .table th {
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 400;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .table td {
+    padding-block: 0.7rem;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .table code {
+    font-size: 0.85rem;
+    color: var(--accent);
+  }
+
+  .status {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+  }
+</style>

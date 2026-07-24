@@ -1,0 +1,42 @@
+---
+interface Props {
+  label: string;
+  variant: 'ubuntu' | 'arch';
+}
+
+const { label, variant } = Astro.props;
+---
+
+<span class={`os-badge os-badge--${variant}`}>
+  {
+    variant === 'ubuntu' ? (
+      <svg viewBox="0 0 24 24" width="16" height="16"><circle cx="12" cy="12" r="10" fill="currentColor" /></svg>
+    ) : (
+      <svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 2 L21 21 L12 17 L3 21 Z" fill="currentColor" /></svg>
+    )
+  }
+  {label}
+</span>
+
+<style>
+  .os-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 0.4rem 0.7rem;
+    border-radius: 999px;
+    background: var(--bg-panel-raised);
+    border: 1px solid var(--line);
+    color: var(--text-muted);
+  }
+
+  .os-badge--ubuntu {
+    color: #e0774a;
+  }
+
+  .os-badge--arch {
+    color: #7fb5e0;
+  }
+</style>
