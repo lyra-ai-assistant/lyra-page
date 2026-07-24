@@ -1,6 +1,5 @@
-# lyra-page
+# Lyra's web page
 
-Lyra's web page, built with [Astro](https://astro.build).
 
 ## Content
 
@@ -96,3 +95,5 @@ it:
 `astro.config.mjs` sets `base: '/lyra-page'`, which is correct for this
 repo's default GitHub Pages URL (`https://lyra-ai-assistant.github.io/lyra-page/`).
 If you point a custom domain at it instead, remove that line.
+
+Lyra's web page, built with [Astro](https://astro.build).
