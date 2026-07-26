@@ -82,7 +82,7 @@ pnpm preview   # preview the production build locally
 
 Output goes to `dist/`.
 
-## Deploying
+## Deployment
 
 A GitHub Actions workflow (`.github/workflows/deploy.yml`) is included to
 build and publish `dist/` to GitHub Pages on every push to `main`. To enable
