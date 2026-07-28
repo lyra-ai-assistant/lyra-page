@@ -4,7 +4,7 @@ export const site = {
   description:
     "Lyra is an open source AI assistant for GNU/Linux that runs fully offline on your own machine. No telemetry, no cloud dependency.",
   githubOrg: 'https://github.com/lyra-ai-assistant',
-  license: 'lyra-server is AGPL-3.0 · lyra-ui is MIT',
+  license: 'lyra-server is AGPL-3.0 · lyra-ui is AGPL-3.0 · lyra-packaging is MIT',
 };
 
 export const hero = {
